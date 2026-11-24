@@ -39,6 +39,9 @@ export default function App(){
 
   return(
     <>
+      {load && <p>Chargement ... </p>}
+      {error && <p>{error}</p> }
+      <input type="text" name="nom" placeholder="Rechercher" value={recherche} onChange={(e)=>setRecherche(e.target.value)} />
 
       <table>
             <tr>
