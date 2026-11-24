@@ -26,7 +26,17 @@ export default function App(){
         }
         getUsers()
     },[])
-    
+    let result=user.filter((us)=>
+            us.name.toLowerCase().includes(recherche.toLowerCase()) ||
+            us.id==recherche ||
+            us.address.street.toLowerCase().includes(recherche.toLowerCase()) ||
+            us.address.suite.toLowerCase().includes(recherche.toLowerCase()) ||
+            us.address.city.toLowerCase().includes(recherche.toLowerCase()) ||
+            us.address.geo.lat==recherche ||
+            us.address.geo.lng==recherche
+
+        )
+
   return(
     <>
 
