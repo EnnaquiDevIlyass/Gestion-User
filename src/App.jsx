@@ -34,9 +34,46 @@ export default function App(){
             us.address.city.toLowerCase().includes(recherche.toLowerCase()) ||
             us.address.geo.lat==recherche ||
             us.address.geo.lng==recherche
-
         )
+        function supprimerId(idew){
+         let ra=result.filter((mp)=>(mp.id != idew))
+         setUser(ra)
+        }
 
+        function modifierId(ide){
+            let ret = user.find(m => m.id === ide);
+            setUserSelect(ret);
+            setFormHide(!formHide);
+        }
+        function Ajouter(e){
+            e.preventDefault();
+            
+            let dt = new FormData(e.currentTarget);
+            
+            let nouvelUser = {
+                name: dt.get("name"),
+                address: {
+                    street: dt.get("street"),
+                    suite: dt.get("suite"),
+                    city: dt.get("city"),
+                    geo: {
+                        lat: dt.get("latitude"),
+                        lng: dt.get("longitude")
+                    }
+                }
+            };
+        
+            if (userSelect) {
+                setUser(prev =>prev.map(u =>u.id === userSelect.id    ? { ...u, ...nouvelUser }    : u));
+            } else {
+                setUser(prev => [...prev,{    id: Math.max(0, ...prev.map(u => u.id)) + 1,    ...nouvelUser}]);
+            }
+        
+            setUserSelect(null);
+            setFormHide(true);
+            e.currentTarget.reset();
+
+    }
   return(
     <>
       {load && <p>Chargement ... </p>}
