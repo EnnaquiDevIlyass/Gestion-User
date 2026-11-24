@@ -42,7 +42,34 @@ export default function App(){
       {load && <p>Chargement ... </p>}
       {error && <p>{error}</p> }
       <input type="text" name="nom" placeholder="Rechercher" value={recherche} onChange={(e)=>setRecherche(e.target.value)} />
-
+      <button onClick={() => { setUserSelect(null); setFormHide(!formHide); }} >Ajouter</button>
+      <form onSubmit={(e)=>Ajouter(e)} hidden={formHide}>
+            <div>
+                <label htmlFor="name">name</label>
+                <input type="text" defaultValue={userSelect?.name || ""}  name="name"/>
+            </div>
+            <div>
+                <label htmlFor="street">street</label>
+                <input type="text" defaultValue={userSelect?.address.street || ""} name="street"/>
+            </div>
+            <div>
+                <label htmlFor="suite">suite</label>
+                <input type="text" defaultValue={userSelect?.address.suite || ""} name="suite"/>
+            </div>
+            <div>
+                <label htmlFor="city">city</label>
+                <input type="text" defaultValue={userSelect?.address.city || ""} name="city"/>
+            </div>
+            <div>
+                <label htmlFor="latitude">latitude</label>
+                <input type="text" defaultValue={userSelect?.address.geo.lat || ""} name="latitude"/>
+            </div>
+            <div>
+                <label htmlFor="longitude">longitude</label>
+                <input type="text" defaultValue={userSelect?.address.geo.lng || ""}  name="longitude"/>
+            </div>
+            <input type="submit" value={userSelect ? "Modifier" : "Ajouter"} />
+      </form>
       <table>
             <tr>
                 <th>Id</th>
