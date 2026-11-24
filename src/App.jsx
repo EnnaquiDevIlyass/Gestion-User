@@ -40,6 +40,30 @@ export default function App(){
   return(
     <>
 
+      <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Street</th>
+                <th>Suite</th>
+                <th>City</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        {result.map((ele)=>(
+            <tr key={ele.id}>
+                <td>{ele.id}</td>
+                <td>{ele.name}</td>
+                <td>{ele.address.street}</td>
+                <td>{ele.address.suite}</td>
+                <td>{ele.address.city}</td>
+                <td>{ele.address.geo.lat}</td>
+                <td>{ele.address.geo.lng}</td>
+                <td><button onClick={()=>modifierId(ele.id)} >Mod</button></td>
+                <td><button onClick={()=>supprimerId(ele.id)} >Supp</button></td>
+            </tr>
+        ))}
+        </table>
     </>
   )
 }
